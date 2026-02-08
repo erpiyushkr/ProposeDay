@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Little Something From My Heart 💖</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&family=Noto+Sans+Devanagari:wght@400;500&family=Tiro+Devanagari+Hindi&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --pink: #ffb6c1;
+            --rose: #ff6f91;
+            --purple: #a78bfa;
+            --gold: #ffd166;
+            --bg1: #fff1f6;
+            --bg2: #fdf4ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(180deg, var(--bg1), var(--bg2));
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Floating background */
+        .float {
+            position: absolute;
+            top: -10%;
+            font-size: 18px;
+            opacity: 0.6;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main card */
+        .card {
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            max-height: 680px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 22px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            animation: slide 0.6s ease;
+        }
+
+        @keyframes slide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        h1,
+        h2 {
+            font-family: "Playfair Display", serif;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .shayari {
+            font-family: "Tiro Devanagari Hindi", "Noto Sans Devanagari", serif;
+            font-size: 16px;
+            margin: 14px 0;
+        }
+
+        .emoji {
+            font-size: 48px;
+            margin: 10px 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 30px;
+            font-size: 15px;
+            cursor: pointer;
+            font-family: Poppins, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .yes {
+            background: linear-gradient(135deg, var(--rose), var(--pink));
+            color: #fff;
+        }
+
+        .no {
+            background: #f1f1f1;
+            color: #555;
+        }
+
+        button:active {
+            transform: scale(0.94);
+        }
+
+        /* Proposal heartbeat */
+        .heartbeat {
+            animation: heart 1.2s infinite;
+        }
+
+        @keyframes heart {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.15);
+            }
+
+            60% {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Progress dots */
+        .dots {
+            position: absolute;
+            bottom: 14px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .dot.active {
+            background: var(--rose);
+        }
+
+        /* Celebration */
+        .celebrate {
+            font-size: 54px;
+            animation: pop 1s infinite alternate;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.25);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating background container -->
+    <div id="bg"></div>
+
+    <div class="card">
+
+        <!-- Screen 0 Intro -->
+        <div class="screen active">
+            <div class="emoji">🌸</div>
+            <h1>Ek Chhoti Si Baat</h1>
+            <p class="shayari">
+                Kabhi kabhi kuch baatein<br>
+                kehna zaroori hota hai,<br>
+                dil ke shor ko chup rehkar<br>
+                sehna mushkil hota hai…
+            </p>
+            <button class="yes" onclick="next()">Start 💖</button>
+        </div>
+
+        <!-- Screen 1 -->
+        <div class="screen">
+            <div class="emoji">😊</div>
+            <h2>Ek sawaal…</h2>
+            <p>Kya chhoti chhoti baatein kisi ka din bana sakti hain?</p>
+            <div class="buttons">
+                <button class="yes" onclick="next()">Yes</button>
+                <button class="no" onclick="next()">No</button>
+            </div>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="screen">
+            <div class="emoji">☕</div>
+            <h2>Socho zara…</h2>
+            <p>Kya coffee aur baatein thodi aur special ho sakti hain?</p>
+            <div class="buttons">
+                <button class="yes" onclick="next()">Yes</button>
+                <button class="no" onclick="next()">No</button>
+            </div>
+        </div>
+
+        <!-- Screen 3 -->
+        <div class="screen">
+            <div class="emoji">✨</div>
+            <h2>Last one…</h2>
+            <p>Kya kisi ka intezaar kabhi kabhi meetha lagta hai?</p>
+            <div class="buttons">
+                <button class="yes" onclick="next()">Yes</button>
+                <button class="no" onclick="next()">No</button>
+            </div>
+        </div>
+
+        <!-- Proposal Screen -->
+        <div class="screen">
+            <div class="emoji heartbeat">❤️</div>
+            <h2>Ek Dil Se Puchhna Hai…</h2>
+            <p class="shayari">
+                Kya tum meri zindagi ka<br>
+                woh hissa banogi,<br>
+                jahan muskurahat bina wajah aaye?
+            </p>
+            <h2>Will you be my girlfriend?</h2>
+            <div class="buttons">
+                <button class="yes" onclick="accept()">Yes 💖</button>
+                <button class="no" onclick="reject()">No 😔</button>
+            </div>
+        </div>
+
+        <!-- Final Screen -->
+        <div class="screen" id="final">
+            <div class="celebrate">🥰</div>
+            <h1>Bas Ek Baat Aur…</h1>
+            <p class="shayari">
+                Intezaar kar rahe hain…<br>
+                msg kar do ab to 💌
+            </p>
+            <p>Muskurahat ke saath 💖</p>
+        </div>
+
+        <!-- Dots -->
+        <div class="dots" id="dots"></div>
+
+    </div>
+
+    <script>
+        const screens = document.querySelectorAll(".screen");
+        const dotsContainer = document.getElementById("dots");
+        let current = 0;
+
+        function renderDots() {
+            dotsContainer.innerHTML = "";
+            for (let i = 0; i < screens.length - 1; i++) {
+                const d = document.createElement("div");
+                d.className = "dot" + (i === current ? " active" : "");
+                dotsContainer.appendChild(d);
+            }
+        }
+
+        function next() {
+            screens[current].classList.remove("active");
+            current++;
+            screens[current].classList.add("active");
+            renderDots();
+        }
+
+        function reject() {
+            const shayari = [
+                "Thoda sa aur soch lo… dil abhi bhi yahin hai 💔",
+                "Intezaar mein bhi mohabbat hoti hai… 😔",
+                "Shayad ek baar aur… bas ek baar 💗"
+            ];
+            alert(shayari[Math.floor(Math.random() * shayari.length)]);
+        }
+
+        function accept() {
+            screens[current].classList.remove("active");
+            document.getElementById("final").classList.add("active");
+            dotsContainer.style.display = "none";
+        }
+
+        renderDots();
+
+        /* Floating background */
+        const bg = document.getElementById("bg");
+        const icons = ["💖", "🌸", "✨", "💫"];
+        for (let i = 0; i < 25; i++) {
+            const s = document.createElement("div");
+            s.className = "float";
+            s.textContent = icons[Math.floor(Math.random() * icons.length)];
+            s.style.left = Math.random() * 100 + "%";
+            s.style.animationDuration = 6 + Math.random() * 6 + "s";
+            s.style.fontSize = 14 + Math.random() * 18 + "px";
+            bg.appendChild(s);
+        }
+    </script>
+
+</body>
+
+</html>
